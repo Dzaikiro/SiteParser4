@@ -38,7 +38,7 @@ namespace SiteParser
                     }
                     var parser = new HtmlParser();
                     var document = parser.ParseDocument(html);
-                    var links = document.QuerySelectorAll("a, img, link, script");
+                    var links = document.QuerySelectorAll("a");
                     //возвращаем строки с атрибутом <а>
 
                     foreach (var link in links)
@@ -50,10 +50,7 @@ namespace SiteParser
                             continue;//пропускаем пустые ссылки 
                         }
 
-                        if (url.Contains("mailto") && url.Contains("ssh") && url.Contains("tel"))
-                        {
-                            continue;
-                        }
+                        
 
 
 
@@ -67,7 +64,7 @@ namespace SiteParser
 
                         }
                         // добавляем проверку на: пустые ссылки, содержание юзер домена, наличие в списке
-                        if (uri != null && uri.ToString().Contains(urls[0]) && !urls.Contains(uri.ToString()))
+                        if (!url.Contains("ico") && !url.Contains("jpg") && !url.Contains("png") && !url.Contains("mailto") && !url.Contains("ssh") && !url.Contains("tel") && uri != null && uri.ToString().Contains(urls[0]) && !urls.Contains(uri.ToString()))
                             urls.Add(uri.ToString());
                     }
                 }
@@ -117,10 +114,11 @@ namespace SiteParser
             int b = 1;
             for (int i = 0; i < urlsfile.Count(); i++)
             {
+               
 
-
-                Console.WriteLine((b) + ") " + urlsfile[i]);
-                b++;//фиксируем количесвтов ссылок
+                    Console.WriteLine((b) + ") " + urlsfile[i]);
+                    b++;//фиксируем количесвтов ссылок
+                
 
             }
             //убираем юзер ссылку
