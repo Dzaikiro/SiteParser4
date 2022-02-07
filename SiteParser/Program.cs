@@ -44,7 +44,9 @@ namespace SiteParser
                     foreach (var link in links)
                     {
 
-                        var url = link.GetAttribute("href");//получаем ссылки с атрибутом <href>
+                        var url = link.GetAttribute("href");
+                        
+                        //получаем ссылки с атрибутом <href>
                         if (string.IsNullOrEmpty(url))
                         {
                             continue;//пропускаем пустые ссылки 
@@ -64,7 +66,7 @@ namespace SiteParser
 
                         }
                         // добавляем проверку на: пустые ссылки, содержание юзер домена, наличие в списке
-                        if (!url.Contains("ico") && !url.Contains("jpg") && !url.Contains("png") && !url.Contains("mailto") && !url.Contains("ssh") && !url.Contains("tel") && uri != null && uri.ToString().Contains(urls[0]) && !urls.Contains(uri.ToString()))
+                        if (!url.Contains("mailto") && !url.Contains("ssh") && !url.Contains("tel") && uri != null && uri.ToString().Contains(urls[0]) && !urls.Contains(uri.ToString()))
                             urls.Add(uri.ToString());
                     }
                 }
