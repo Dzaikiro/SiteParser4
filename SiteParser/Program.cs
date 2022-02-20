@@ -38,21 +38,21 @@ namespace SiteParser
                     }
                     var parser = new HtmlParser();
                     var document = parser.ParseDocument(html);
-                    var links = document.QuerySelectorAll("a");
+                    var links = document.QuerySelectorAll("a, img");
                     //возвращаем строки с атрибутом <а>
 
                     foreach (var link in links)
                     {
 
                         var url = link.GetAttribute("href");
-                        
+
                         //получаем ссылки с атрибутом <href>
                         if (string.IsNullOrEmpty(url))
                         {
                             continue;//пропускаем пустые ссылки 
                         }
+                        В
 
-                        
 
 
 
@@ -102,6 +102,11 @@ namespace SiteParser
                         urlsfile.Add(node["loc"].InnerText);//добавляем в список
                     }
                 }
+                for (int i = 0; i < urls.Count(); i++)
+                {
+                    urlsfile.Add(urlsfile[i]);
+                }
+                urls = urls.Union(urlsfile).ToList();
             }
 
             catch (Exception e)
@@ -116,10 +121,12 @@ namespace SiteParser
             int b = 1;
             for (int i = 0; i < urlsfile.Count(); i++)
             {
-               
-
+                
                     Console.WriteLine((b) + ") " + urlsfile[i]);
                     b++;//фиксируем количесвтов ссылок
+                
+               
+                    
                 
 
             }
@@ -133,19 +140,21 @@ namespace SiteParser
             int c = 1;
             for (int i = 0; i < urls.Count(); i++)
             {
-                if (!urlsfile.Contains(urls[i]))
-                {
+
+               
                     Console.WriteLine((c) + ") " + urls[i]);
                     c++;
-                }
+                
+                
+                    
             }
-
+            
             //добавляем данные из одного списка urls в другой urlsfile
             for (int i = 0; i < urlsfile.Count(); i++)
             {
                 urls.Add(urls[i]);
             }
-            urlsfile = urlsfile.Union(urls).ToList();
+            
             Console.WriteLine("\nnext step... just waiting");
 
             //создаем цикл для подсчета временни запроса на каждую ссылку
@@ -167,6 +176,7 @@ namespace SiteParser
                 {
 
                 }
+                urlsfile = urlsfile.Union(urls).ToList();
             }
 
             Console.WriteLine("\n\nTime allotted for links");
