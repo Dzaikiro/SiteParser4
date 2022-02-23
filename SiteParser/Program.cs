@@ -38,7 +38,7 @@ namespace SiteParser
                     }
                     var parser = new HtmlParser();
                     var document = parser.ParseDocument(html);
-                    var links = document.QuerySelectorAll("a, img");
+                    var links = document.QuerySelectorAll("a");
                     //возвращаем строки с атрибутом <а>
 
                     foreach (var link in links)
@@ -51,7 +51,7 @@ namespace SiteParser
                         {
                             continue;//пропускаем пустые ссылки 
                         }
-                        В
+                        
 
 
 
@@ -141,9 +141,13 @@ namespace SiteParser
             for (int i = 0; i < urls.Count(); i++)
             {
 
-               
+               if(!urlsfile.Contains(urls[i]))
+                {
                     Console.WriteLine((c) + ") " + urls[i]);
                     c++;
+
+                }
+                    
                 
                 
                     
